@@ -20,7 +20,7 @@ exports.update = async (req, res) => {
     const user = result[0].get({ raw: true });
     user.avatar = result[0].avatar;
     delete user.password;
-    res.send(user);
+    return res.send(user);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
