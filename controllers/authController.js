@@ -6,6 +6,7 @@ const config = require('../config/keys');
 exports.login = async (req, res) => {
   const { email, password } = req.body;
   try {
+    console.log(email, password);
     const user = await User.findOne({
       where: {
         email,
@@ -30,7 +31,7 @@ exports.register = async (req, res) => {
     const userWithToken = generateToken(user.get({ raw: true }));
     res.send(userWithToken);
   } catch (err) {
-    res.status(200).json({ error: err.message });
+    res.status(500).json({ error: err.message });
   }
 };
 
